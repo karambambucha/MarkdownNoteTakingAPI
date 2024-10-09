@@ -1,5 +1,6 @@
 using MarkdownNoteTakingAPI.Data;
 using Microsoft.AspNetCore.Mvc;
+using Markdig;
 
 namespace MarkdownNoteTakingAPI.Controllers
 {
@@ -7,21 +8,22 @@ namespace MarkdownNoteTakingAPI.Controllers
     [Route("Markdown")]
     public class MarkdownController : ControllerBase
     {
+        protected string _folder;
         protected readonly IConfiguration _configuration;
         public MarkdownController(IConfiguration configuration)
         {
             _configuration = configuration;
+            _folder = _configuration.GetValue<string>("MarkdownDirectory");
         }
         [HttpPost]
         public async Task<IActionResult> UploadMarkdownFile(IFormFile file)
         {
             FileInfo fileInfo = new FileInfo(file.FileName);
-
             if (fileInfo.Extension != ".md")
-            {
                 return BadRequest("Only accepts .md file");
-            }
-            var path = Path.Combine(_configuration.GetValue<string>("MarkdownDirectory"), fileInfo.Name);
+            if(!Directory.Exists(_folder))
+                Directory.CreateDirectory(_folder);
+            var path = Path.Combine(_folder, fileInfo.Name);
 
             // saves a file in folder, defined by path
             using (var stream = new FileStream(path, FileMode.Create))
@@ -32,14 +34,14 @@ namespace MarkdownNoteTakingAPI.Controllers
             return Ok(new { success = $"{fileInfo.Name} saved sucessfully" });
         }
         [HttpGet]
-        [Route("Files")]
+        [Route("MarkdownFile")]
         public IActionResult GetMarkdownFiles()
         {
             try
             {
                 List<string> data = new List<string>();
 
-                string[] files = Directory.GetFiles(_configuration.GetValue<string>("MarkdownDirectory"), "*.md");
+                string[] files = Directory.GetFiles(_folder, "*.md");
                 foreach (string file in files)
                 {
                     var fileName = file.Split('\\').Last();
@@ -52,15 +54,31 @@ namespace MarkdownNoteTakingAPI.Controllers
                 return BadRequest(ex.Message);
             }
         }
+        [HttpGet]
+        [Route("MarkdownFile/{filename}")]
+        public async Task<IActionResult> GetMarkdownFile([FromRoute] string filename)
+        {
+            try
+            {
+                var path = Path.Combine(_folder, filename); 
+                var markdown = System.IO.File.ReadAllText(path); //reads .md file
+                var html = Markdown.ToHtml(markdown); //converts raw .md text to HTML
+
+                return Ok(new { MarkdownFile = html });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
         [HttpPost]
         [Route("CheckGrammar/{filename}")]
         public async Task<IActionResult> CheckGrammar([FromRoute] string filename)
         {
-            var folder = _configuration.GetValue<string>("MarkdownDirectory");
-            var path = Path.Combine(folder, filename);
+            var path = Path.Combine(_folder, filename);
             FileInfo fInfo = new FileInfo(path);
             if (!fInfo.Exists)
-                return BadRequest($"File {filename} not found at {folder}");
+                return BadRequest($"File {filename} not found at {_folder}");
             if (!filename.EndsWith(".md"))
                 return BadRequest("Not a markdown file");
             //checking if files exists, if it's a .md file
