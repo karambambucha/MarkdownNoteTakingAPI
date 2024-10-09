@@ -4,10 +4,10 @@ https://roadmap.sh/projects/url-shortening-service
 Markdown Note Taking API - API, позволяющее пользователям загружать файлы .md (markdown), проверять грамматику, сохранять файл .md и отображать ее в HTML.
 ## Фичи
 * Загрузка и чтение файлов .md
+* Отображать в HTML
 * Проверка грамотности с помощью Sapling API
 ## Todo
 * Редактирование и сохранение файлов .md
-* Отображение в HTML
 
 ## Технологии
 * ASP.NET Core 7.0
@@ -26,11 +26,11 @@ Markdown Note Taking API - API, позволяющее пользователя�
 ## Overview
 Markdown Note Taking API - API that allows users to upload markdown files, check the grammar, save the note, and render it in HTML.
 ## Features
-* Uploading and reading .md files
-* Grammar check with Sapling API
+* Upload and read .md files
+* Render .md in HTML
+* Check grammer with Sapling API
 ## To do
 * Editing and saving .md files
-* Display in HTML
 
 
 ## Technologies
