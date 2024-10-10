@@ -33,6 +33,28 @@ namespace MarkdownNoteTakingAPI.Controllers
 
             return Ok(new { success = $"{fileInfo.Name} saved sucessfully" });
         }
+        [HttpPost]
+        [Route("MarkdownFile/{filename}")]
+        public IActionResult WriteMarkdownFile([FromRoute] string filename, [FromBody] string text)
+        {
+            try
+            {
+                var path = Path.Combine(_folder, filename);
+
+                if (!System.IO.File.Exists(path))
+                    return BadRequest(new { error = "File does exist!" });
+                string decoded = text.Replace(@"\n", "\n");
+                System.IO.File.WriteAllText(path, decoded);
+
+                return Ok(new { success = "!" });
+
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            
+        }
         [HttpGet]
         [Route("MarkdownFile")]
         public IActionResult GetMarkdownFiles()

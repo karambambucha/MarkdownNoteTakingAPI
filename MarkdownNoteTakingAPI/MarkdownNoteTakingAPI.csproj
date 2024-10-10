@@ -9,6 +9,7 @@
   <ItemGroup>
     <PackageReference Include="Markdig" Version="0.37.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+    <PackageReference Include="Westwind.AspNetCore.Markdown" Version="3.21.0" />
   </ItemGroup>
 
 </Project>
