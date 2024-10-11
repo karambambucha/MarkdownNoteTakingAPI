@@ -1,0 +1,65 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="HandheldFriendly" content="true" />
+  <title>Виртуальная касса</title>
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet" type="text/css" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="css/site.css" />
+</head>
+
+<body>
+  <div class="header">
+    <p class="header-title">Markdown Note Taking App</p>
+  </div>
+
+  <div id="sale" class="container">
+    <div class="row">
+      <div class="form-group">
+        <h3>Upload File</h3>
+        <label for="myfile">Select a file:</label>
+        <input type="file" class="form-control" id="myfile" name="myfile" accept=".md">
+      </div>
+      <button class="btn btn-default" id="upload-file">
+        Upload .md
+      </button>
+      <hr class="solid">
+      <div class="form-group">
+        <h3>Read File</h3>
+        <label for="auth-key-input">File Name:</label>
+        <input type="text" class="form-control" id="file-name-input" />
+      </div>
+      <button class="btn btn-default" id="get-note">
+        Get Markdown
+      </button>
+      <div class="col-sm-12 info-col">
+        <label class="info-title">Note:</label>
+        <div id="note-field" class="info-field"></div>
+        <hr class="solid">
+      </div>
+      
+      <div class="form-group">
+        <h3>Check Grammar</h3>
+        <label for="auth-key-input">File Name:</label>
+        <input type="text" class="form-control" id="file-name-grammar-input" />
+      </div>
+      <button class="btn btn-default" id="get-grammar">
+        Check Grammar
+      </button>
+      <div class="col-sm-12 info-col">
+        <label class="info-title">Grammar:</label>
+        <pre id="grammar-field" class="info-field"></pre>
+      </div>
+    </div>
+  </div>
+  <script src="js/site.js" asp-append-version="true"></script>
+</body>
+
+</html>

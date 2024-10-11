@@ -16,6 +16,7 @@ namespace MarkdownNoteTakingAPI.Controllers
             _folder = _configuration.GetValue<string>("MarkdownDirectory");
         }
         [HttpPost]
+        [Route("MarkdownFile")]
         public async Task<IActionResult> UploadMarkdownFile(IFormFile file)
         {
             FileInfo fileInfo = new FileInfo(file.FileName);
@@ -51,7 +52,7 @@ namespace MarkdownNoteTakingAPI.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest(ex.Message);
+                return BadRequest(new { error = ex.Message });
             }
             
         }
@@ -73,7 +74,7 @@ namespace MarkdownNoteTakingAPI.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest(ex.Message);
+                return BadRequest(new { error = ex.Message });
             }
         }
         [HttpGet]
@@ -90,7 +91,7 @@ namespace MarkdownNoteTakingAPI.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest(ex.Message);
+                return BadRequest(new { error = ex.Message });
             }
         }
         [HttpPost]
@@ -132,7 +133,7 @@ namespace MarkdownNoteTakingAPI.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest(ex.Message);
+                return BadRequest(new { error = ex.Message });
             }
         }
     }

@@ -1,0 +1,103 @@
+﻿body,
+select,
+input,
+button {
+    font-family: "Source Sans Pro", sans-serif;
+}
+
+body {
+    background: #f5f7fa;
+}
+
+html {
+    overflow-y: scroll;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+button,
+input,
+select {
+    border-radius: 5px;
+    border: 1px solid #c5c5c5;
+}
+
+input, select {
+    width: 100px;
+}
+
+nav ul,
+nav ol {
+    height: 32vh;
+    border: 1px solid #ececec;
+}
+
+nav ol {
+    padding: 0px 15px;
+}
+
+nav ul,
+nav ol {
+    overflow: hidden;
+    overflow-y: scroll;
+}
+
+.products-list li,
+.cart-list li {
+    padding: 5px;
+    border: 1px solid #ececec;
+    background: #ffffff;
+    border-radius: 5px;
+    text-align: left;
+}
+
+.header {
+    background: #63b842;
+    color: #ffffff;
+    line-height: 60px;
+}
+
+.header-title {
+    text-align: left;
+    font-size: 25px;
+    margin-left: 5vh;
+}
+
+.input-inner-field {
+    padding: 1.5%;
+    margin: 0;
+}
+
+.input-field input,
+.input-field select {
+    height: 30px;
+    width: 70%;
+}
+
+.input-field {
+    border: 1px solid #ddd;
+}
+hr.solid {
+    border-top: 3px solid #bbb;
+  }
+.info-field {
+    border: 1px solid #ddd;
+    overflow: hidden;
+    overflow-y: scroll;
+    overflow-x:scroll;
+    height: 500px;
+    background: #edf1f2;
+    padding: 15px;
+}
+
+.info-col {
+    padding-left: 0px;
+    padding-right: 3px;
+}
+
+.total {
+    text-align: right;
+}
